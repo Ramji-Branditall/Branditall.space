@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brand It All – Brand Design for Product-Based Businesses</title>
+  <link href="https://Fonts.googleapis.com/css2?family=Aladdin&family=Funnel+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+    font-family: 'Aladdin';
+    src: url('Fonts/Aladin-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Funnel Sans';
+    src: url('Fonts/FunnelSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Funnel Sans';
+    src: url('Fonts/FunnelSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Funnel Sans';
+    src: url('Fonts/FunnelSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── BRAND COLORS ── */
+    :root {
+      --teal:      #007c7c;
+      --teal-dark: #005f5f;
+      --charcoal:  #2e2e2e;
+      --off-white: #f9f9f6;
+      --cream:     #f2e2ce;
+      --coral:     #f16b6c;
+      --coral-bg:  #fdf0f0;
+      --white:     #ffffff;
+      --border:    #e4e4e4;
+      --gray:      #666666;
+      --gray-lt:   #999999;
+      --radius:    12px;
+      --max:       1140px;   /* desktop max width */
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Funnel Sans', sans-serif;
+      font-weight: 400;
+      color: var(--charcoal);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    h1 { font-family: 'Aladdin', cursive; font-weight: 400; }
+    h2 { font-family: 'Funnel Sans', sans-serif; font-weight: 600; }
+    h3, h4 { font-family: 'Funnel Sans', sans-serif; font-weight: 500; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── INNER WRAPPER ── */
+    .inner {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ════════════════════════════════
+       NAV
+    ════════════════════════════════ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links {
+      display: none;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      display: none;
+    }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .hero {
+      background: var(--white);
+      padding: 60px 24px 72px;
+      text-align: center;
+    }
+    .hero-logo { width: 200px; height: auto; display: block; margin: 0 auto 24px; }
+    .hero-tagline { font-size: 13px; color: var(--gray); letter-spacing: .05em; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(40px, 6vw, 72px); line-height: 1.05; color: var(--teal); margin-bottom: 20px; }
+    .hero-body { font-size: clamp(15px, 1.4vw, 18px); font-weight: 500; line-height: 1.75; color: var(--charcoal); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Funnel Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      font-style: italic;
+      padding: 15px 34px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    .sub-note { font-size: 12px; color: var(--gray-lt); margin-top: 12px; }
+
+    /* ── section shared ── */
+    section { padding: 72px 24px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gray-lt);
+      margin-bottom: 14px;
+    }
+    .center { text-align: center; }
+
+    /* ICONS shared */
+    .icon-circle {
+      width: 44px; height: 44px; min-width: 44px;
+      background: var(--coral-bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .icon-square {
+      width: 44px; height: 44px;
+      background: var(--coral-bg);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .icon-circle svg, .icon-square svg {
+      width: 20px; height: 20px;
+      stroke: var(--coral); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ════════════════════════════════
+       SOUND FAMILIAR
+    ════════════════════════════════ */
+    .familiar { background: var(--cream); }
+    .fam-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin: 28px 0 24px;
+    }
+    .fam-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .fam-text { font-size: 15px; font-weight: 500; color: var(--charcoal); line-height: 1.55; padding-top: 8px; }
+    .fam-footer { font-size: 14px; color: var(--gray); line-height: 1.65; }
+    .fam-footer strong { color: var(--charcoal); font-weight: 600; }
+
+    /* ════════════════════════════════
+       OUR APPROACH
+    ════════════════════════════════ */
+    .approach { background: var(--white); }
+    .approach h1 { font-size: clamp(34px, 4vw, 54px); color: var(--teal); line-height: 1.1; margin-bottom: 20px; }
+    .approach-intro { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 8px; }
+    .approach-intro strong { color: var(--charcoal); font-weight: 600; }
+    .approach-body { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 36px; }
+    .ap-points { display: flex; flex-direction: column; gap: 28px; }
+    .ap-point { display: flex; align-items: flex-start; gap: 18px; }
+    .ap-point h3 { font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; }
+    .ap-point p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* ════════════════════════════════
+       WHAT WE OFFER
+    ════════════════════════════════ */
+    .offer { background: var(--off-white); }
+    .offer h1 { font-size: clamp(30px, 4vw, 50px); color: var(--teal); line-height: 1.1; margin-bottom: 36px; }
+    .offer-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .offer-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.06);
+    }
+    .offer-card h2 { font-size: 19px; color: var(--charcoal); margin-bottom: 4px; }
+    .card-sub { font-size: 12px; color: var(--teal); font-weight: 500; margin-bottom: 12px; }
+    .offer-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+    .offer-cta { text-align: center; margin-top: 36px; }
+    .offer-cta p { font-size: 14px; color: var(--gray); margin-bottom: 10px; }
+    .offer-cta a {
+      font-size: 16px; font-weight: 600; font-style: italic;
+      color: var(--teal); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .offer-cta a svg { width: 17px; height: 17px; stroke: var(--teal); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ════════════════════════════════
+       OUR WORK
+    ════════════════════════════════ */
+    .work { background: var(--white); }
+    .work h1 { font-size: clamp(30px, 4vw, 50px); color: var(--teal); line-height: 1.1; margin-bottom: 28px; }
+    .work-img { width: 100%; border-radius: 12px; display: block; margin-bottom: 16px; border: 1px solid var(--border); }
+    .work-img-placeholder {
+      width: 100%; aspect-ratio: 16/8;
+      background: var(--off-white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 10px; color: #ccc; margin-bottom: 16px;
+    }
+    .work-img-placeholder svg { width: 40px; height: 40px; }
+    .work-img-placeholder span { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+    .work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .work-tag { font-size: 12px; color: var(--gray-lt); }
+    .work-client { font-size: 18px; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
+    .work-sub { font-size: 12px; color: var(--teal); font-weight: 500; margin-bottom: 14px; }
+    .work-desc { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 18px; }
+    .work-stat-box { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 22px; }
+    .work-stat { font-size: 14px; font-weight: 600; color: var(--charcoal); line-height: 1.75; }
+    .deliverables-title { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 12px; }
+    .deliverables-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .deliv-tag { font-size: 12px; background: var(--off-white); color: var(--gray); padding: 5px 13px; border-radius: 100px; border: 1px solid var(--border); }
+
+    /* ════════════════════════════════
+       WHY US
+    ════════════════════════════════ */
+    .why { background: var(--cream); }
+    .why h1 { font-size: clamp(28px, 4vw, 48px); color: var(--teal); line-height: 1.1; margin-bottom: 36px; }
+    .why-cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .why-card { background: var(--white); border-radius: var(--radius); padding: 22px 20px; box-shadow: 0 1px 5px rgba(0,0,0,.06); }
+    .why-card h3 { font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+    .why-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+    /* ════════════════════════════════
+       LET'S TALK
+    ════════════════════════════════ */
+    .talk { background: var(--white); }
+    .talk h1 { font-size: clamp(32px, 4vw, 52px); color: var(--teal); line-height: 1.1; margin-bottom: 18px; }
+    .talk-body { font-size: 15px; color: var(--gray); line-height: 1.75; margin-bottom: 22px; }
+    .talk-expect { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 12px; }
+    .talk-list { list-style: disc; padding-left: 22px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 34px; }
+    .talk-list li { font-size: 14px; color: var(--gray); line-height: 1.65; }
+    .talk-cta { margin-bottom: 24px; text-align: center; }
+    .talk-email { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14px; color: var(--gray); flex-wrap: wrap; }
+    .talk-email svg { width: 17px; height: 17px; min-width: 17px; stroke: var(--coral); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+    .talk-email a { color: var(--teal); font-weight: 500; text-decoration: none; }
+
+/* ════════════════════════════════
+       CONTACT & SOCIAL
+    ════════════════════════════════ */
+    .contact-sec { background: var(--off-white); padding: 72px 24px; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .contact-block .section-label { margin-bottom: 20px; }
+    .contact-items { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+    .contact-item a { color: var(--teal); text-decoration: none; font-weight: 500; }
+    .contact-item a:hover { text-decoration: underline; }
+    .contact-icon {
+      width: 38px; height: 38px; min-width: 38px;
+      background: var(--coral-bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-icon svg { width: 17px; height: 17px; stroke: var(--coral); }
+    .social-items { display: flex; flex-direction: column; gap: 16px; }
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      transition: transform .15s;
+    }
+    .social-item:hover { transform: translateX(4px); }
+    .social-icon {
+      width: 42px; height: 42px; min-width: 42px;
+      background: var(--coral-bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .social-icon svg { width: 18px; height: 18px; stroke: var(--coral); }
+    .social-name { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 2px; }
+    .social-handle { font-size: 12px; color: var(--gray-lt); }
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    footer { background: var(--teal); color: var(--white); text-align: center; padding: 40px 24px 32px; }
+    .footer-brand { font-weight: 700; font-size: 15px; letter-spacing: .1em; margin-bottom: 5px; }
+    .footer-tagline { font-size: 13px; opacity: .8; margin-bottom: 16px; }
+    .footer-copy { font-size: 11px; opacity: .55; }
+
+    /* ════════════════════════════════
+       TABLET — 768px+
+    ════════════════════════════════ */
+    @media (min-width: 768px) {
+
+      section { padding: 80px 40px; }
+
+      /* familiar — 3 columns */
+      .fam-cards { grid-template-columns: repeat(3, 1fr); }
+
+      /* approach — side by side */
+      .approach-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      /* offer — 3 columns */
+      .offer-cards { grid-template-columns: repeat(3, 1fr); }
+
+      /* work — image + content side by side */
+      .work-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+
+      /* why — 2 columns */
+      .why-cards { grid-template-columns: repeat(2, 1fr); }
+
+      /* talk — centered max width */
+      .talk-inner { max-width: 620px; margin: 0 auto; }
+
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-block; }
+      .hamburger { display: none; }
+    }
+
+    /* ════════════════════════════════
+       DESKTOP — 1024px+
+    ════════════════════════════════ */
+    @media (min-width: 1024px) {
+
+      section { padding: 96px 60px; }
+
+      .hero { padding: 100px 60px 110px; }
+      .hero-logo { width: 240px; margin-bottom: 28px; }
+
+      /* why — 4 columns */
+      .why-cards { grid-template-columns: repeat(4, 1fr); }
+
+      .nav-inner { padding: 16px 60px; }
+    }
+
+    /* ════════════════════════════════
+       LARGE DESKTOP — 1280px+
+    ════════════════════════════════ */
+    @media (min-width: 1280px) {
+      section { padding: 110px 80px; }
+      .inner { padding: 0 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ NAV ══════════ -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="Images/logo.png" alt="Brand It All"/>
+      </div>
+      <div class="nav-links">
+        <a href="#approach">Our Approach</a>
+        <a href="#offer">What We Offer</a>
+        <a href="#work">Our Work</a>
+        <a href="#why">Why Us</a>
+      </div>
+      <a href="#talk" class="btn-primary nav-cta" style="padding:11px 24px;font-size:13px;">Schedule a Call</a>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <img src="Images/logo.png" alt="Brand It All" class="hero-logo"/>
+    <p class="hero-tagline">Brand Design for Product-Based Businesses</p>
+    <h1>Your Product Deserves a<br>Brand That Sells.</h1>
+    <p class="hero-body">
+      We build strategic brand identities and design every touch point your
+      customers see, so you stand out, get noticed, and grow.
+    </p>
+    <a href="#talk" class="btn-primary">Schedule a Discovery call</a>
+    <p class="sub-note">Free 30-minute call. No pressure. Just clarity.</p>
+  </section>
+
+  <!-- ══════════ SOUND FAMILIAR ══════════ -->
+  <section class="familiar reveal">
+    <div class="inner">
+      <p class="section-label center">SOUND FAMILIAR</p>
+      <div class="fam-cards">
+
+        <div class="fam-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"/>
+              <line x1="12" y1="8" x2="12" y2="13"/>
+              <circle cx="12" cy="16.5" r=".8" fill="#f16b6c" stroke="none"/>
+            </svg>
+          </div>
+          <p class="fam-text">Your product is great, but your brand doesn't show it</p>
+        </div>
+
+        <div class="fam-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 6h16M4 10h16M4 14h10"/>
+              <path d="M16 14l3 3m0-3l-3 3"/>
+            </svg>
+          </div>
+          <p class="fam-text">Every piece of your marketing looks slightly different.</p>
+        </div>
+
+        <div class="fam-card">
+          <div class="icon-circle">
+            <svg viewBox="0 0 24 24">
+              <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/>
+            </svg>
+          </div>
+          <p class="fam-text">Customers scroll past without stopping.</p>
+        </div>
+
+      </div>
+      <p class="fam-footer center">
+        That's not a product problem. It's a <strong>brand problem.</strong> And we fix it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ OUR APPROACH ══════════ -->
+  <section class="approach reveal" id="approach">
+    <div class="inner">
+      <div class="approach-layout">
+        <!-- Left: heading + text -->
+        <div>
+          <p class="section-label">OUR APPROACH</p>
+          <h1>Strategy First.<br>Design Second.<br>Sales Always.</h1>
+          <p class="approach-intro" style="margin-top:20px;">Most designers make things look nice.<br>We make things work.</p>
+          <p class="approach-body" style="margin-top:12px;">
+            Every project at <strong>BRAND IT ALL</strong> starts with understanding your product,
+            your customer, and your market. Then we build a brand identity that's strategic,
+            distinctive, and consistent across every single touchpoint your customer interacts with.
+          </p>
+        </div>
+        <!-- Right: 3 points -->
+        <div class="ap-points">
+
+          <div class="ap-point">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div>
+              <h3>Be Visible</h3>
+              <p>A logo, color system, and visual identity built to stop the scroll and stay in memory.</p>
+            </div>
+          </div>
+
+          <div class="ap-point">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div>
+              <h3>Build Trust</h3>
+              <p>Consistent design across your packaging, collateral, and social media — so customers feel confident buying from you.</p>
+            </div>
+          </div>
+
+          <div class="ap-point">
+            <div class="icon-circle">
+              <svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <div>
+              <h3>Drive Sales</h3>
+              <p>Touch points that don't just look good — they move people from 'interested' to 'I'll take it.'</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT WE OFFER ══════════ -->
+  <section class="offer reveal" id="offer">
+    <div class="inner">
+      <p class="section-label center">WHAT WE OFFER</p>
+      <h1 class="center">Everything Your Brand Needs.<br>Nothing You Don't.</h1>
+
+      <div class="offer-cards">
+
+        <div class="offer-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h2>Core Foundation</h2>
+          <p class="card-sub">Brand Visual Identity + Usage Guide</p>
+          <p>Logo design, color palette, typography system, visual elements, and a complete brand guide. The foundation everything else is built on.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h2>Key Touch Points</h2>
+          <p class="card-sub">Your Brand, Everywhere It Matters</p>
+          <p>Business cards, letterhead, social media kit, company profile, pitch deck, brochures, catalog, packaging, merchandise, and more. Choose what fits your business.</p>
+        </div>
+
+        <div class="offer-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+          </div>
+          <h2>Optional Add-Ons</h2>
+          <p class="card-sub">For Clients Who Want More</p>
+          <p>Ongoing design support on a monthly retainer, plus print coordination and delivery — so you never have to manage it yourself.</p>
+        </div>
+
+      </div>
+
+      <div class="offer-cta">
+        <p>Not sure what you need? Let's talk.</p>
+        <a href="#talk">
+          Schedule a Discovery call
+          <svg viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ OUR WORK ══════════ -->
+  <section class="work reveal" id="work">
+    <div class="inner">
+      <p class="section-label">OUR WORK</p>
+      <h1>Brands We've Built.<br>Businesses That Grew.</h1>
+
+      <div class="work-layout">
+        <!-- Left: image -->
+        <div>
+          <!-- Replace this div with: <img src="Images/work1.jpg" alt="Kushal Indoor Garden" class="work-img"/> -->
+          <img src="Images/work1.jpg" alt="Kushal Indoor Garden" class="work-img"/>
+          <div class="work-tags">
+            <span class="work-tag">Brand Identity</span>
+            <span class="work-tag">·</span>
+            <span class="work-tag">Print</span>
+            <span class="work-tag">·</span>
+            <span class="work-tag">Office Branding</span>
+            <span class="work-tag">·</span>
+            <span class="work-tag">Ongoing Design Support</span>
+          </div>
+        </div>
+
+        <!-- Right: case study -->
+        <div>
+          <p class="work-client">Kushal Indoor Garden</p>
+          <p class="work-sub">From One Logo to a Complete Brand Ecosystem</p>
+          <p class="work-desc">
+            We took their existing logo, vectorized and refined it for flawless use at any scale, then
+            built out their entire brand presence from scratch: letterhead, thank-you cards, price cards,
+            flex banners, vinyl office branding, ID cards with lanyards, brochures, a product catalog,
+            staff T-shirts, social media posts, and ongoing festival wishes for their customers.
+          </p>
+          <div class="work-stat-box">
+            <p class="work-stat">3+ years of partnership</p>
+            <p class="work-stat">25% business growth reported</p>
+          </div>
+          <p class="deliverables-title">Deliverables</p>
+          <div class="deliverables-tags">
+            <span class="deliv-tag">Logo Vectorization</span>
+            <span class="deliv-tag">Letterhead</span>
+            <span class="deliv-tag">Office Vinyl Branding</span>
+            <span class="deliv-tag">Brochure</span>
+            <span class="deliv-tag">Product Catalog</span>
+            <span class="deliv-tag">Social Media Posts</span>
+            <span class="deliv-tag">Flyers / Pamphlet</span>
+            <span class="deliv-tag">Banners</span>
+            <span class="deliv-tag">Ongoing Design Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHY US ══════════ -->
+  <section class="why reveal" id="why">
+    <div class="inner">
+      <p class="section-label center">WHY US</p>
+      <h1 class="center">We're Not Just Designers.<br>We're Your Brand Partners.</h1>
+
+      <div class="why-cards">
+
+        <div class="why-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+          <h3>Outcome-Driven</h3>
+          <p>We design for visibility and sales, not awards. Every decision connects back to your business goals.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h3>Product Business Specialists</h3>
+          <p>We understand what it takes to make a physical product brand work — from packaging shelf appeal to sales deck credibility.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+          </div>
+          <h3>End-to-End Execution</h3>
+          <p>Strategy. Design. Delivery. One partner — no juggling freelancers or agencies.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="icon-square">
+            <svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3>Built for Growth</h3>
+          <p>Start with your core identity. Add touch points as you scale. We grow with you.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ LET'S TALK ══════════ -->
+  <section class="talk reveal" id="talk">
+    <div class="inner">
+      <div class="talk-inner">
+        <p class="section-label">LET'S TALK</p>
+        <h1>Ready to Build a Brand<br>That Actually Works?</h1>
+        <p class="talk-body">
+          In 30 minutes, we'll look at where your brand stands today, what's holding you back,
+          and exactly what needs to change. No fluff. Just a clear path forward.
+        </p>
+        <p class="talk-expect">What to expect:</p>
+        <ul class="talk-list">
+          <li>A focused conversation about your product and goals</li>
+          <li>Honest feedback on your current brand presence</li>
+          <li>A clear sense of what we'd do together and what it looks like</li>
+        </ul>
+        <div class="talk-cta">
+          <a href="https://calendly.com/ramji-branditall/30min" target="_blank" class="btn-primary">Schedule a Discovery call</a>
+          <p class="sub-note" style="margin-top:12px;">Free 30-minutes. No obligation.</p>
+        </div>
+        <div class="talk-email">
+          <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>Prefer to write first? Email us at <a href="mailto:ramji@branditall.space">ramji@branditall.space</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CONTACT & SOCIAL ══════════ -->
+<section class="contact-sec reveal">
+  <div class="inner">
+
+    <div class="contact-grid">
+
+      <!-- Contact Us -->
+      <div class="contact-block">
+        <p class="section-label">CONTACT US</p>
+        <div class="contact-items">
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <span>+91 9600687201</span>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <a href="mailto:ramji@branditall.space">ramji@branditall.space</a>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <span>Bengaluru-21, KA, INDIA.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="contact-block">
+        <p class="section-label">FOLLOW US</p>
+        <div class="social-items">
+
+          <a href="https://www.instagram.com/branditall.space/" target="_blank" class="social-item">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <div>
+              <p class="social-name">Instagram</p>
+              <p class="social-handle">@branditall.space</p>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/ramakrishnan-j-ramji-5112451b3/" target="_blank" class="social-item">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <p class="social-name">LinkedIn</p>
+              <p class="social-handle">Ramakrishnan J (Ramji)</p>
+            </div>
+          </a>
+
+          <a href="https://www.behance.net/ramakrishnanj2" target="_blank" class="social-item">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9h8a3 3 0 010 6H3V6h7a3 3 0 010 6"/>
+                <path d="M14 6h6M15 12h5a3 3 0 010 6h-5v-6z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="social-name">Behance</p>
+              <p class="social-handle">ramakrishnanj2</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+```
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <div class="footer-brand">BRAND IT ALL</div>
+    <div class="footer-tagline">Brand Design for Product-Based Businesses</div>
+    <div class="footer-copy">© 2026 Brand It All. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
