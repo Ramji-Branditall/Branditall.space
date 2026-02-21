@@ -92,6 +92,16 @@
       justify-content: space-between;
     }
     .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-logo-text {
+      font-family: 'Funnel Sans', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: .06em;
+      color: var(--charcoal);
+      text-transform: uppercase;
+      text-decoration: none;
+      line-height: 1.2;
+    }
     .nav-links {
       display: none;
       gap: 32px;
@@ -104,11 +114,106 @@
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--teal); }
-    .nav-cta {
-      display: none;
+
+
+    /* Hamburger button */
+    .hamburger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--white);
+      transition: border-color .2s;
+      flex-shrink: 0;
     }
-    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); border-radius: 2px; }
+    .hamburger:hover { border-color: var(--teal); }
+    .hamburger svg { width: 20px; height: 20px; stroke: var(--charcoal); stroke-width: 2; stroke-linecap: round; }
+
+    /* Mobile drawer overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+    }
+    .mobile-drawer {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 0 28px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+      transform: translateY(-100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-menu.open .mobile-drawer {
+      transform: translateY(0);
+    }
+    .mobile-drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 10px;
+    }
+    .mobile-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--white);
+      transition: border-color .2s, background .2s;
+    }
+    .mobile-close:hover { border-color: var(--teal); }
+    .mobile-close svg { width: 18px; height: 18px; stroke: var(--charcoal); stroke-width: 2; stroke-linecap: round; }
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px;
+    }
+    .mobile-nav-links a {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--charcoal);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color .2s;
+    }
+    .mobile-nav-links a:last-child { border-bottom: none; }
+    .mobile-nav-links a:hover { color: var(--teal); }
+    .mobile-drawer-cta {
+      padding: 20px 24px 0;
+    }
+    .mobile-drawer-cta a {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Funnel Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      font-style: italic;
+      padding: 16px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .mobile-drawer-cta a:hover { background: var(--teal-dark); }
 
     /* ════════════════════════════════
        HERO
@@ -258,8 +363,21 @@
     .work-client { font-size: 18px; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
     .work-sub { font-size: 12px; color: var(--teal); font-weight: 500; margin-bottom: 14px; }
     .work-desc { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 18px; }
-    .work-stat-box { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; margin-bottom: 22px; }
-    .work-stat { font-size: 14px; font-weight: 600; color: var(--charcoal); line-height: 1.75; }
+    .work-stat-box { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+    .work-stat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--teal);
+      border-radius: 8px;
+      padding: 13px 16px;
+    }
+
     .deliverables-title { font-size: 13px; font-weight: 600; color: var(--charcoal); margin-bottom: 12px; }
     .deliverables-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .deliv-tag { font-size: 12px; background: var(--off-white); color: var(--gray); padding: 5px 13px; border-radius: 100px; border: 1px solid var(--border); }
@@ -383,7 +501,6 @@
       .talk-inner { max-width: 620px; margin: 0 auto; }
 
       .nav-links { display: flex; }
-      .nav-cta { display: inline-block; }
       .hamburger { display: none; }
     }
 
@@ -421,17 +538,48 @@
         <img src="Images/logo.png" alt="Brand It All"/>
       </div>
       <div class="nav-links">
-        <a href="#approach">Our Approach</a>
-        <a href="#offer">What We Offer</a>
+        <a href="#approach">About</a>
+        <a href="#offer">Services</a>
         <a href="#work">Our Work</a>
-        <a href="#why">Why Us</a>
+        <a href="#talk">Contact</a>
       </div>
-      <a href="#talk" class="btn-primary nav-cta" style="padding:11px 24px;font-size:13px;">Schedule a Call</a>
-      <div class="hamburger">
-        <span></span><span></span><span></span>
-      </div>
+
+      <button class="hamburger" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
   </nav>
+
+  <!-- ══════════ MOBILE MENU ══════════ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-overlay" id="menuOverlay"></div>
+    <div class="mobile-drawer">
+      <div class="mobile-drawer-top">
+        <div class="nav-logo">
+          <img src="Images/logo.png" alt="Brand It All" style="height:40px;width:auto;"/>
+        </div>
+        <button class="mobile-close" id="menuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#work" onclick="closeMobileMenu()">Our Work</a>
+        <a href="#offer" onclick="closeMobileMenu()">Services</a>
+        <a href="#approach" onclick="closeMobileMenu()">About</a>
+        <a href="#talk" onclick="closeMobileMenu()">Contact</a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="https://calendly.com/ramji-branditall/30min" target="_blank" onclick="closeMobileMenu()">Get Started</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
@@ -708,7 +856,7 @@
         </div>
         <div class="talk-email">
           <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span>Prefer to write first? Email us at <a href="mailto:ramji@branditall.space">ramji@branditall.space</a></span>
+          <span>Prefer to write first? Email us at <span style="color:var(--teal);font-weight:500;">ramji@branditall.space</span></span>
         </div>
       </div>
     </div>
@@ -740,7 +888,7 @@
                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
-            <a href="mailto:ramji@branditall.space">ramji@branditall.space</a>
+            <span>ramji@branditall.space</span>
           </div>
 
           <div class="contact-item">
@@ -808,7 +956,6 @@
     </div>
   </div>
 </section>
-```
 
   <!-- ══════════ FOOTER ══════════ -->
   <footer>
@@ -817,16 +964,32 @@
     <div class="footer-copy">© 2026 Brand It All. All rights reserved.</div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => observer.observe(el));
-  </script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
 
+    // Mobile Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menuClose = document.getElementById('menuClose');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function openMobileMenu() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMobileMenu);
+    menuClose.addEventListener('click', closeMobileMenu);
+    menuOverlay.addEventListener('click', closeMobileMenu);
+  </script>
 </body>
 </html>
