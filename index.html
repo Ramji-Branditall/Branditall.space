@@ -1230,19 +1230,29 @@ Share your business details and what kind of content support you are looking for
 
 </div>
 
-<form class="contact-form">
+<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+
+<input type="hidden" name="access_key" value="Y063dfbae-1827-4f7f-a506-a7da8418deb6">
+
 <div class="form-row">
-<input type="text" placeholder="Full Name">
-<input type="text" placeholder="Brand Name">
+<input type="text" name="full_name" placeholder="Full Name">
+<input type="text" name="brand_name" placeholder="Brand Name">
 </div>
+
 <div class="form-row">
-<input type="tel" placeholder="Phone Number">
-<input type="email" placeholder="Email">
+<input type="tel" name="phone" placeholder="Phone Number">
+<input type="email" name="email" placeholder="Email">
 </div>
-<input type="text" placeholder="Instagram Handle">
-<input type="text" placeholder="Services Needed">
-<textarea placeholder="Tell us about your brand and goals"></textarea>
-<button class="btn-primary" style="border:none;cursor:pointer;font-size:15px;">Send Inquiry</button>
+
+<input type="text" name="instagram" placeholder="Instagram Handle">
+<input type="text" name="services" placeholder="Services Needed">
+
+<textarea name="message" placeholder="Tell us about your brand and goals"></textarea>
+
+<button class="btn-primary" style="border:none;cursor:pointer;font-size:15px;">
+Send Inquiry
+</button>
+
 </form>
 
 </div>
